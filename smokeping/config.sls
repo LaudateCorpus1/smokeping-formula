@@ -20,6 +20,7 @@ smokeping_fcgi:
     - source: salt://smokeping/files/smokeping.fcgi
     - template: jinja
     - user: root
+    - mode: 755
     - watch_in:
       - service: smokeping
     - require:
