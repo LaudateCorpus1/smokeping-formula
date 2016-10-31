@@ -14,6 +14,17 @@ smokeping_cfg:
     - require:
       - pkg: smokeping
 
+smokeping_fcgi:
+  file.managed:
+    - name: /usr/share/smokeping/www/smokeping.fcgi
+    - source: salt://smokeping/files/smokeping.fcgi
+    - template: jinja
+    - user: root
+    - watch_in:
+      - service: smokeping
+    - require:
+      - pkg: smokeping
+
 {% for config in ['General', 'Database', 'Alerts', 'Targets', 'Presentation', 'Probes', 'pathnames'] %}
 smokeping_config_d_{{config}}:
   file.managed:
